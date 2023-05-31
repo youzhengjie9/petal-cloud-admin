@@ -1,4 +1,4 @@
-package com.petal;
+package com.petal.auth;
 
 public class Main {
     public static void main(String[] args) {
