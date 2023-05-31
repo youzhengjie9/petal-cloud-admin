@@ -3,10 +3,22 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/petal-auth/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/petal-auth/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/petal-common/petal-common-base/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/petal-common/petal-common-base/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/petal-common/petal-common-feign/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/petal-common/petal-common-feign/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/petal-common/petal-common-mybatis/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/petal-common/petal-common-mybatis/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/petal-common/petal-common-redis/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/petal-common/petal-common-redis/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/petal-common/petal-common-security/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/petal-common/petal-common-security/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/petal-common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/petal-common/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/petal-gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/petal-gateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/petal-system/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/petal-system/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>

@@ -1,4 +1,4 @@
-package com.petal.common;
+package com.petal.common.base;
 
 public class Main {
     public static void main(String[] args) {

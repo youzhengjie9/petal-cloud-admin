@@ -11,6 +11,14 @@
 
     <groupId>com.petal.common</groupId>
     <artifactId>petal-common</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>petal-common-base</module>
+        <module>petal-common-mybatis</module>
+        <module>petal-common-redis</module>
+        <module>petal-common-feign</module>
+        <module>petal-common-security</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
