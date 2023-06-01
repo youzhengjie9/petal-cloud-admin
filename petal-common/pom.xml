@@ -16,8 +16,8 @@
         <module>petal-common-base</module>
         <module>petal-common-mybatis</module>
         <module>petal-common-redis</module>
-        <module>petal-common-feign</module>
         <module>petal-common-security</module>
+        <module>petal-common-openfeign</module>
     </modules>
 
     <properties>
