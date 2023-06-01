@@ -15,6 +15,8 @@
     <file url="file://$PROJECT_DIR$/petal-common/petal-common-redis/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/petal-common/petal-common-security/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/petal-common/petal-common-security/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/petal-common/petal-common-swagger/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/petal-common/petal-common-swagger/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/petal-common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/petal-common/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/petal-gateway/src/main/java" charset="UTF-8" />

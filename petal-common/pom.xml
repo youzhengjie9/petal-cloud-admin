@@ -18,6 +18,7 @@
         <module>petal-common-redis</module>
         <module>petal-common-security</module>
         <module>petal-common-openfeign</module>
+        <module>petal-common-swagger</module>
     </modules>
 
     <properties>

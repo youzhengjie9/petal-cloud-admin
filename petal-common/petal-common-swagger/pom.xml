@@ -9,8 +9,8 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.petal.common.security</groupId>
-    <artifactId>petal-common-security</artifactId>
+    <groupId>com.petal.common.swagger</groupId>
+    <artifactId>petal-common-swagger</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -19,36 +19,32 @@
     </properties>
 
     <dependencies>
+        <!--        common base模块-->
         <dependency>
             <groupId>com.petal.common.base</groupId>
             <artifactId>petal-common-base</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <!--        swagger3-->
         <dependency>
-            <groupId>com.petal.common.redis</groupId>
-            <artifactId>petal-common-redis</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>${swagger.version}</version>
         </dependency>
+        <!--        knife4j 美化swagger ui -->
         <dependency>
-            <groupId>com.petal.common.openfeign</groupId>
-            <artifactId>petal-common-openfeign</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-spring-boot-starter</artifactId>
+            <version>${knife4j.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-oauth2-jose</artifactId>
-        </dependency>
-        <!-- Spring Authorization Server认证服务器 -->
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-oauth2-authorization-server</artifactId>
-            <version>${spring.authorization.server.version}</version>
-        </dependency>
-        <!--        单元测试-->
+        <!--
+                实现自定义的properties（@ConfigurationProperties注解下的内容）可以在application.yml出现提示。
+                导入了这个依赖，当我们运行项目后就会在target目录下面自动生成/META-INF/spring-configuration-metadata.json文件
+         -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 

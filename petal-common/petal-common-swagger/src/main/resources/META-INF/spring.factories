@@ -1,0 +1,3 @@
+
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+    com.petal.common.swagger.autoconfigure.PetalCommonSwaggerAutoConfiguration
