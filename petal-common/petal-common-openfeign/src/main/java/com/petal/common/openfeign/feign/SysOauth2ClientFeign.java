@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 
-@FeignClient(value = ApplicationNameConstant.PETAL_SYSTEM_SERVER,path = "/client")
+@FeignClient(value = ApplicationNameConstant.PETAL_SYSTEM_SERVER,path = "/sys/oauth2/client")
 public interface SysOauth2ClientFeign {
 
     @GetMapping(value = "/getClientById/{clientId}")

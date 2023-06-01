@@ -4,21 +4,22 @@ import com.alibaba.fastjson2.JSON;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.petal.oauth2.common.base.entity.SysOauth2Client;
-import com.petal.oauth2.common.base.utils.ResponseResult;
-import com.petal.oauth2.common.security.annotation.PermitAll;
-import com.petal.oauth2.resource7000.service.SysOauth2ClientService;
+import com.petal.common.base.entity.SysOauth2Client;
+import com.petal.common.base.utils.ResponseResult;
+import com.petal.common.security.annotation.PermitAll;
+import com.petal.system.service.SysOauth2ClientService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
 @Api("oauth2-client控制器")
 @RestController
-@RequestMapping("/client")
+@RequestMapping("/sys/oauth2/client")
 public class SysOauth2ClientController {
 
 	private SysOauth2ClientService sysOauth2ClientService;

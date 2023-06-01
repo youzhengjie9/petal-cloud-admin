@@ -1,5 +1,5 @@
 server:
-  port: 7000
+  port: 7200
 
 # SpringCloud配置
 spring:
@@ -13,7 +13,7 @@ spring:
       #swagger所需要的配置
       matching-strategy: ant_path_matcher
   application:
-      name: petal-oauth2-resource-server
+      name: petal-system
   # SpringCloud Alibaba配置
   cloud:
     # Nacos配置
@@ -24,7 +24,7 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.184.100:3308/petal-oauth2-auth-db?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://192.168.184.100:3308/petal-cloud-admin?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false
     username: root
     password: 123456
     #druid数据库连接池配置

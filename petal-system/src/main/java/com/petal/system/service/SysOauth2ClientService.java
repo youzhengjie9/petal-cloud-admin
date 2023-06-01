@@ -1,8 +1,7 @@
 package com.petal.system.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.petal.oauth2.common.base.entity.SysOauth2Client;
-
+import com.petal.common.base.entity.SysOauth2Client;
 
 public interface SysOauth2ClientService extends IService<SysOauth2Client> {
 

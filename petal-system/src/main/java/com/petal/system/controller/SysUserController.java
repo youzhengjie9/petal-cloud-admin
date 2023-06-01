@@ -1,10 +1,10 @@
 package com.petal.system.controller;
 
-import com.petal.oauth2.common.base.entity.SysUser;
-import com.petal.oauth2.common.base.utils.ResponseResult;
-import com.petal.oauth2.common.security.annotation.PermitAll;
-import com.petal.oauth2.common.security.utils.SecurityUtil;
-import com.petal.oauth2.resource7000.service.SysUserService;
+import com.petal.common.base.entity.SysUser;
+import com.petal.common.base.utils.ResponseResult;
+import com.petal.common.security.annotation.PermitAll;
+import com.petal.common.security.utils.SecurityUtil;
+import com.petal.system.service.SysUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

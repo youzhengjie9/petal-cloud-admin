@@ -1,9 +1,9 @@
 package com.petal.system.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.petal.oauth2.common.base.entity.SysOauth2Client;
-import com.petal.oauth2.resource7000.mapper.SysOauth2ClientMapper;
-import com.petal.oauth2.resource7000.service.SysOauth2ClientService;
+import com.petal.common.base.entity.SysOauth2Client;
+import com.petal.system.mapper.SysOauth2ClientMapper;
+import com.petal.system.service.SysOauth2ClientService;
 import org.springframework.stereotype.Service;
 
 @Service
