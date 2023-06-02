@@ -15,7 +15,7 @@ import org.springframework.security.oauth2.server.authorization.token.OAuth2Toke
  */
 public class CustomeOAuth2TokenCustomizer implements OAuth2TokenCustomizer<OAuth2TokenClaimsContext> {
 
-	private static final String LICENSE = "http://petal.oauth2.com:9200";
+	private static final String LICENSE = "http://petal.oauth2.com:5000";
 
 	@Override
 	public void customize(OAuth2TokenClaimsContext context) {

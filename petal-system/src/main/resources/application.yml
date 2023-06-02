@@ -1,5 +1,5 @@
 server:
-  port: 7200
+  port: 7000
 
 # SpringCloud配置
 spring:

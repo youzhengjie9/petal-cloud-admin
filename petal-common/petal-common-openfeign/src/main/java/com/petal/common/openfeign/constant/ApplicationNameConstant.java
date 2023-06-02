@@ -8,6 +8,6 @@ package com.petal.common.openfeign.constant;
  */
 public final class ApplicationNameConstant {
 
-    public static final String PETAL_SYSTEM_SERVER = "petal-system-server";
+    public static final String PETAL_SYSTEM_SERVER = "petal-system";
 
 }
