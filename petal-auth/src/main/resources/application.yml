@@ -1,0 +1,92 @@
+server:
+  port: 9200
+
+spring:
+  application:
+    name: petal-auth
+  thymeleaf:
+    cache: false
+  mvc:
+    pathmatch:
+      # swagger所需要的配置
+      matching-strategy: ant_path_matcher
+  main:
+    # 防止同时存在多个类型相同的bean导致报错
+    allow-bean-definition-overriding: true
+  # SpringCloud Alibaba配置
+  cloud:
+    # Nacos配置
+    nacos:
+      # Nacos的ip:端口
+      server-addr: 192.168.184.100:7747
+  # spring-data-redis配置
+  redis:
+    database: 5
+    host: 192.168.184.100
+    port: 6379
+    #配置lettuce连接池，大幅提高性能（如果不进行配置，则默认是不使用连接池,只有进行了下面的配置，连接池才会生效）
+    lettuce:
+      pool:
+        #min-idle建议配置：0
+        min-idle: 0
+        #max-idle建议配置：cpu核心数*2，由于我们cpu是i5-9300H，是4核cpu，所以建议设置8
+        max-idle: 8
+        #max-active建议配置：大于等于cpu核心数*2，也是推荐设置8
+        max-active: 8
+        #使用redis默认值即可：-1
+        max-wait: -1
+
+
+# swagger配置属性
+swagger:
+  # 是否开启 (true=开启,false=隐藏。生产环境建议设置为false)
+  enable: true
+  # 接口文档描述
+  description: 这是我的接口文档
+  # 联系人姓名
+  contactName: youzhengjie
+  # 联系人的网站url
+  contactUrl: https://blog.csdn.net/weixin_50071998?type=blog
+  # 联系人的电子邮件
+  contactEmail: 1550324080@qq.com
+
+
+
+# 认证服务器配置
+authorization:
+  server:
+    # 客户端id
+    clientId: yzj_client
+    # 客户端密码
+    clientPassword: yzj666888
+    # 客户端服务器的ip地址
+    clientIpAddr: http://127.0.0.1:8300
+    # 认证成功后重定向的uri集合
+    redirectUris:
+      - ${authorization.server.clientIpAddr}/login/oauth2/code/yzjClient
+      - ${authorization.server.clientIpAddr}
+    # 授权范围集合
+    scopes:
+      - read
+      - write
+      - all
+    # accessToken过期时间为:2h(2小时)
+    access-token-time-to-live: 2h
+    # refreshToken过期时间为:7d(7天)
+    refresh-token-time-to-live: 7d
+    # jks文件路径（默认是resources目录下）
+    jksPath: myjks.jks
+    # jks证书别名
+    jksAlias: myjks
+    # jks证书的keystore密码
+    jksPassword: 123456
+    # 获取accessToken、refreshToken的url（ 格式为: http://认证服务器ip:认证服务器端口号/oauth2/token ）
+    oauth2TokenUrl: http://127.0.0.1:${server.port}/oauth2/token
+    issuer-uri: http://petal.oauth2.com:9000
+
+# 开启端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

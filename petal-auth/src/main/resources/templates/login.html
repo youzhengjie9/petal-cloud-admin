@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="test">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="This is a login page template based on Bootstrap 5">
+    <title>oauth2第三方认证系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            height: 100%;
+        }
+        body {
+            height: 100%;
+        }
+        .container {
+            height: 100%;
+            background-image: linear-gradient(to right, #fbc2eb, #a6c1ee);
+        }
+        .login-wrapper {
+            background-color: #fff;
+            width: 358px;
+            height: 588px;
+            border-radius: 15px;
+            padding: 0 50px;
+            position: relative;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .header {
+            font-size: 38px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 200px;
+        }
+        .input-item {
+            display: block;
+            width: 100%;
+            margin-bottom: 20px;
+            border: 0;
+            padding: 10px;
+            border-bottom: 1px solid rgb(128, 125, 125);
+            font-size: 15px;
+            outline: none;
+        }
+        .input-item:placeholder {
+            text-transform: uppercase;
+        }
+        .btn {
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            margin-top: 40px;
+            background-image: linear-gradient(to right, #a6c1ee, #fbc2eb);
+            color: #fff;
+        }
+
+        a {
+            text-decoration-line: none;
+            color: #abc1ee;
+        }
+    </style>
+    <script th:inline="javascript">
+        if (window !== top) {
+            top.location.href = location.href;
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="login-wrapper">
+        <div class="header">oauth2认证系统</div>
+        <div class="form-wrapper">
+            <h3 th:text="${error}"></h3>
+            <form action="/token/login_form" method="post" id="loginForm">
+                <input type="hidden" name="client_id" class="form-control" value="authorization_login" placeholder="所属客户端">
+                <input type="hidden" name="grant_type" class="form-control" value="authorization_code" placeholder="所属客户端">
+                <input type="text" name="username" autocomplete="off" placeholder="请输入用户名" class="input-item">
+                <input type="password" name="password" autocomplete="off" placeholder="请输入密码" class="input-item">
+                <div class="btn" onclick="document.forms['loginForm'].submit()">登录</div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    window.onload = function () {
+        console.log("-========")
+        let href = window.location.href;
+        let origin = window.location.origin;
+        let path = href.substring(origin.length,href.length);
+        console.log(path)
+        if(path === '/token/login?error'){
+            alert('用户名或密码错误')
+        }else if(path === '/login?logout'){
+            alert('退出成功')
+        }
+
+    }
+
+</script>
+
+
+</body>
+</html>

@@ -88,7 +88,7 @@ spring:
         deny:                           # IP 黑名单，若白名单也存在，则优先使用
   # spring-data-redis配置
   redis:
-    database: 2
+    database: 5
     host: 192.168.184.100
     port: 6379
     #配置lettuce连接池，大幅提高性能（如果不进行配置，则默认是不使用连接池,只有进行了下面的配置，连接池才会生效）
