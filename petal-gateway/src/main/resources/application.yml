@@ -1,0 +1,102 @@
+server:
+  port: 6000
+##################################################################################
+# 注意：整合了Nacos注册中心、配置中心需要把有关于spring.xxx的全部配置放到bootstrap.yml文件中，不然会报错！！！！！
+##################################################################################
+spring:
+  application:
+    name: petal-gateway
+  mvc:
+    pathmatch:
+      # swagger所需要的配置
+      matching-strategy: ant_path_matcher
+  main:
+    allow-bean-definition-overriding: true
+    # 解决gateway不能导入spring-boot-web依赖的问题（因为gateway是reactive,而普通web是servlet,两者不兼容）
+    web-application-type: reactive
+  # spring-data-redis配置
+  redis:
+    database: 5
+    host: 192.168.184.100
+    port: 6379
+    #配置lettuce连接池，大幅提高性能（如果不进行配置，则默认是不使用连接池,只有进行了下面的配置，连接池才会生效）
+    lettuce:
+      pool:
+        #min-idle建议配置：0
+        min-idle: 0
+        #max-idle建议配置：cpu核心数*2，由于我们cpu是i5-9300H，是4核cpu，所以建议设置8
+        max-idle: 8
+        #max-active建议配置：大于等于cpu核心数*2，也是推荐设置8
+        max-active: 8
+        #使用redis默认值即可：-1
+        max-wait: -1
+  # SpringCloud Alibaba配置
+  cloud:
+    # Nacos配置
+    nacos:
+      # Nacos的ip:端口
+      server-addr: 192.168.184.100:7747
+    gateway:
+      discovery:
+        locator:
+          # 动态路由。是否开启自动创建路由,这里不开启,我们在下面自己手动配置路由（如果设置为true,下面手动配置的路由会失效！）
+          enabled: false
+      # 手动创建路由。路由数组(就是当请求满足什么样的条件就跳转到哪个"微服务")
+      routes:
+        # id是路由的唯一标识
+        - id: petal-auth-route
+          # lb指的是从Nacos中按照被调用方的spring.application.name获取对应微服务,并进行负载均衡调用（例如: 轮询）
+          uri: lb://petal-auth
+          # Path为网关的路由规则。（例如访问 http://网关ip:网关端口/petal-auth/bbb 就符合下面的规则）
+          predicates:
+            - Path=/petal-auth/**
+          # 配置该路由的过滤器。
+          filters:
+            # swagger过滤器
+            - name: Swagger
+            # 校验验证码过滤器
+#            - name: CheckCaptcha
+            - name: PasswordDecoder
+
+        # id是路由的唯一标识
+        - id: petal-system-route
+          uri: lb://petal-system
+          predicates:
+            - Path=/petal-system/**
+          # 配置该路由的过滤器。
+          filters:
+            # 配置请求限流器.
+            # 请求限流器的filter的名称name必须为RequestRateLimiter
+            - name: RequestRateLimiter
+              args:
+                # 限流策略。我们自定义的KeyResolver的bean名
+                key-resolver: "#{@ipAddressKeyResolver}"
+                # 每秒允许处理的请求数量。设置的数值就代表每秒向令牌桶添加多少个令牌
+                redis-rate-limiter.replenishRate: 5
+                # 令牌桶的容量，即允许在 1 秒内完成的最大请求数。设置为 0 则表示拒绝所有请求
+                redis-rate-limiter.burstCapacity: 10
+            # swagger过滤器
+            - name: Swagger
+
+        # id是路由的唯一标识
+        - id: petal-gateway-route
+          uri: lb://petal-gateway
+          predicates:
+            - Path=/v3/api-docs/**
+          # 配置该路由的过滤器。
+          filters:
+            - RewritePath=/v3/api-docs/(?<path>.*), /$\\{path}/$\\{path}/v3/api-docs
+
+
+# 网关配置
+gateway:
+  ignore-check-captcha-clients:
+    - test
+
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
