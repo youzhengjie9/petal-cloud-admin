@@ -10,15 +10,15 @@
     </parent>
 
     <groupId>com.petal.common</groupId>
-    <artifactId>petal-common</artifactId>
+    <artifactId>pca-common</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>petal-common-base</module>
-        <module>petal-common-mybatis</module>
-        <module>petal-common-redis</module>
-        <module>petal-common-security</module>
-        <module>petal-common-openfeign</module>
-        <module>petal-common-swagger</module>
+        <module>pca-common-base</module>
+        <module>pca-common-mybatis</module>
+        <module>pca-common-redis</module>
+        <module>pca-common-security</module>
+        <module>pca-common-openfeign</module>
+        <module>pca-common-swagger</module>
     </modules>
 
     <properties>

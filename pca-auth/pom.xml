@@ -4,13 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.petal.common</groupId>
-        <artifactId>petal-common</artifactId>
+        <groupId>com.petal</groupId>
+        <artifactId>petal-cloud-admin</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.petal.common.security</groupId>
-    <artifactId>petal-common-security</artifactId>
+    <groupId>com.petal.auth</groupId>
+    <artifactId>pca-auth</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -19,30 +19,42 @@
     </properties>
 
     <dependencies>
+        <!--  nacos注册中心  -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <!--        common base基础模块   -->
         <dependency>
             <groupId>com.petal.common.base</groupId>
-            <artifactId>petal-common-base</artifactId>
+            <artifactId>pca-common-base</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <!--        common redis模块-->
         <dependency>
             <groupId>com.petal.common.redis</groupId>
-            <artifactId>petal-common-redis</artifactId>
+            <artifactId>pca-common-redis</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <!--       common security模块 -->
+        <dependency>
+            <groupId>com.petal.common.security</groupId>
+            <artifactId>pca-common-security</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.petal.common.openfeign</groupId>
-            <artifactId>petal-common-openfeign</artifactId>
+            <groupId>com.petal.common.swagger</groupId>
+            <artifactId>pca-common-swagger</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-oauth2-jose</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
-        <!-- Spring Authorization Server认证服务器 -->
         <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-oauth2-authorization-server</artifactId>
-            <version>${spring.authorization.server.version}</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
         </dependency>
         <!--        单元测试-->
         <dependency>
@@ -50,6 +62,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
 </project>

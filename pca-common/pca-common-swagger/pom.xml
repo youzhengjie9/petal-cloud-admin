@@ -5,12 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.petal.common</groupId>
-        <artifactId>petal-common</artifactId>
+        <artifactId>pca-common</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
     <groupId>com.petal.common.swagger</groupId>
-    <artifactId>petal-common-swagger</artifactId>
+    <artifactId>pca-common-swagger</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -22,7 +22,7 @@
         <!--        common base模块-->
         <dependency>
             <groupId>com.petal.common.base</groupId>
-            <artifactId>petal-common-base</artifactId>
+            <artifactId>pca-common-base</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <!--        swagger3-->
