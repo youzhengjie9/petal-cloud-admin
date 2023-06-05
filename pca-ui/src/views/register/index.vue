@@ -120,7 +120,7 @@
   </div>
 </template>
   
-  <script>
+<script>
 //引入api中的方法
 import { register,sendCode } from '../../api/register'
 import { initDynamicRouter } from "../../utils/permission";
@@ -373,7 +373,8 @@ export default {
   
   <style scoped>
 .backImg {
-  background: url("../../assets/login-page.jpg");
+  /*background: url("../../assets/login-page.jpg");*/
+  background: url("@/assets/login-page.jpg");
   background-size: 100% 100%;
   position: fixed;
   width: 100%;

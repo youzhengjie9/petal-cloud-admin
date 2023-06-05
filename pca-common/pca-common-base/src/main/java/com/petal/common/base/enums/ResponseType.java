@@ -37,6 +37,32 @@ public enum ResponseType {
      */
     LOGOUT_SUCCESS(800,"退出登录成功"),
     LOGOUT_ERROR(801,"退出登录失败"),
+
+    /**
+     * 文件操作状态
+     */
+    IMAGE_UPLOAD_SUCCESS(901,"图片上传成功"),
+    IMAGE_UPLOAD_ERROR(902,"图片上传失败"),
+    FILE_FORMAT_UNSUPPORT(903,"不支持该文件格式，上传失败"),
+    FILE_DELETE_SUCCESS(904,"文件删除成功"),
+    FILE_DELETE_ERROR(905,"文件删除失败"),
+
+    /**
+     * 导出excel状态
+     */
+    EXPORT_EXCEL_ERROR(1001,"导出excel失败"),
+
+    /**
+     * 注册状态
+     */
+    REGISTER_SUCCESS(1100,"注册用户成功"),
+    REGISTER_ERROR(1101,"注册用户失败"),
+    SEND_PHONE_CODE_SUCCESS(1102,"发送验证码成功,验证码将在5分钟后失效"),
+    SEND_PHONE_CODE_ERROR(1103,"发送手机验证码失败"),
+    PHONE_CODE_ERROR(1104,"手机验证码不正确"),
+    PHONE_ERROR(1105,"手机号格式不正确"),
+    CONFIRM_PASSWORD_ERROR(1106,"两次输入的密码不一致"),
+    USERNAME_EXISTED(1107,"该用户名已被占用,请使用不同的用户名")
     ;
 
 

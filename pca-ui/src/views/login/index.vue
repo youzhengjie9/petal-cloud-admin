@@ -227,7 +227,8 @@ export default {
 <style scoped>
 
 .backImg {
-  background: url("../../assets/login-page.jpg");
+  /*background: url("../../assets/login-page.jpg");*/
+  background: url("@/assets/login-page.jpg");
   background-size: 100% 100%;
   position: fixed;
   width: 100%;

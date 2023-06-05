@@ -163,10 +163,6 @@
 
 </style>
 
-
-</style>
-
-
 <script>
 
 /* 引入echarts */

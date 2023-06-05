@@ -33,6 +33,8 @@
         <easy-captcha.version>1.6.2</easy-captcha.version>
         <swagger.version>3.0.0</swagger.version>
         <knife4j.version>3.0.3</knife4j.version>
+        <easyexcel.version>3.1.1</easyexcel.version>
+        <jakarta.persistence-api.version>2.2.3</jakarta.persistence-api.version>
     </properties>
 
     <!--    依赖管理  -->
