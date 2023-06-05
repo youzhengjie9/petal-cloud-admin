@@ -1,5 +1,7 @@
 package com.petal.common.base.vo.server;
 
+import com.petal.common.base.utils.Arith;
+
 /**
  * cpu信息
  *

@@ -80,10 +80,10 @@
 
 <script>
 //引入api中的方法
-import { getCaptcha,userLogin } from "../../api/login";
+import { getImageCaptcha,passwordLogin } from "@/api/login";
 import{
   initDynamicRouter
-}from '../../utils/permission'
+}from '@/utils/permission'
 
 export default {
   data() {
@@ -92,8 +92,8 @@ export default {
       form: {
         username:'',
         password:'',
-        code:'', //前端输入的验证码
-        codeKey:'' //存储在redis中的正确的验证码的key，通过这个key能找到正确的验证码
+        codeKey:'', //存储在redis中的正确的验证码的key，通过这个key能找到正确的验证码
+        code:'' //前端输入的验证码
       },
       //配置前端表单校验规则
       rules: {
@@ -157,52 +157,53 @@ export default {
           const newFormData={
             username:this.form.username,
             password:this.form.password,
-            code:this.form.code, //前端输入的验证码
-            codeKey:this.form.codeKey //存储在redis中的正确的验证码的key，通过这个key能找到正确的验证码
+            image_captcha_key:this.form.codeKey, //存储在redis中的正确的验证码的key，通过这个key能找到正确的验证码
+            image_captcha:this.form.code, //前端输入的验证码
           }
           
           //调用userLogin的api方法
-          userLogin(newFormData).then((res) => {
+          passwordLogin(newFormData).then((res) => {
+            console.log(res)
             let data=res.data;
             
-            //用户登录成功
-            if(data.code===600)
-            {
-              
-                this.$store.dispatch('loginSuccess',data);
-                this.$message({
-                    showClose: true,
-                    message: data.msg,
-                    type: 'success',
-                    duration:1000
-                });
-                //登陆成功后就可以为这个用户生成动态路由（调用permission.js的初始化动态路由方法）
-                initDynamicRouter();
-
-              
-                //登录成功后跳转到首页
-                this.$router.push({
-                  path:'/'
-                })
-            }
-            else if(data.code===601 || data.code===602){
-              this.$message({
-                    showClose: true,
-                    message: data.msg,
-                    type: 'error',
-                    duration:1000
-                });
-            }
+            // //用户登录成功
+            // if(data.code===600)
+            // {
+            //
+            //     this.$store.dispatch('loginSuccess',data);
+            //     this.$message({
+            //         showClose: true,
+            //         message: data.msg,
+            //         type: 'success',
+            //         duration:1000
+            //     });
+            //     //登陆成功后就可以为这个用户生成动态路由（调用permission.js的初始化动态路由方法）
+            //     initDynamicRouter();
+            //
+            //
+            //     //登录成功后跳转到首页
+            //     this.$router.push({
+            //       path:'/'
+            //     })
+            // }
+            // else if(data.code===601 || data.code===602){
+            //   this.$message({
+            //         showClose: true,
+            //         message: data.msg,
+            //         type: 'error',
+            //         duration:1000
+            //     });
+            // }
             
         }).catch((err)=>{
-                this.$message({
-                    showClose: true,
-                    message: '登录失败,请检查是否输入正确',
-                    type: 'error',
-                    duration:1000
-              });
+          console.log(err)
+            this.$message({
+              showClose: true,
+              message: '登录失败,请检查是否输入正确',
+              type: 'error',
+              duration:1000
+            });
         })
-          
      
         } else {
           return false;
@@ -211,12 +212,13 @@ export default {
     },
     //调用刷新验证码api接口
     refreshCaptcha() {
-      getCaptcha()
+      getImageCaptcha()
         .then((res) => {
+          console.log(res)
           //把验证码的key存储到表单对象中，请求登录接口时方便通过携带这个key从redis中找到正确的验证码
-          this.form.codeKey=res.data.data.codeKey;
+          this.form.codeKey=res.data.data.imageCaptchaKey;
           //存储验证码图片base64
-          this.imageBase64 = res.data.data.imageBase64;
+          this.imageBase64 = res.data.data.imageCaptchaBase64;
         })
         .catch((err) => {});
     },

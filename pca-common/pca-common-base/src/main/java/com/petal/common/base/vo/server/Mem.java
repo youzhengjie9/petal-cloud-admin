@@ -1,7 +1,6 @@
 package com.petal.common.base.vo.server;
 
-import com.boot.utils.Arith;
-
+import com.petal.common.base.utils.Arith;
 
 /**
  * 内存信息

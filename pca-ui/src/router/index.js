@@ -36,7 +36,8 @@ const router = new VueRouter({
       //dashboard默认路由被我放到后端进行生成
       //解决登陆时，前端因为有些用户没有菜单/路由，而后端getRouterByUserId方法查不到数据导致一直死循环的bug
       children:[]
-    },
+    }
+    ,
     {
       path:'/login',
       component: () =>import('../views/login/index.vue')
@@ -53,7 +54,7 @@ const router = new VueRouter({
       //配置404未找到页面路由
       path:'*',
       component: () => import('../views/error-page/404.vue')
-    }    
+    }
   ]
 });
 

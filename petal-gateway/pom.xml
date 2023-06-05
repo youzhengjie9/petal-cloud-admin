@@ -24,12 +24,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
-        <!--      easy-captcha验证码插件  -->
-        <dependency>
-            <groupId>com.github.whvcse</groupId>
-            <artifactId>easy-captcha</artifactId>
-            <version>${easy-captcha.version}</version>
-        </dependency>
         <dependency>
             <groupId>com.petal.common.swagger</groupId>
             <artifactId>pca-common-swagger</artifactId>

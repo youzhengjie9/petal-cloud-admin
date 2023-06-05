@@ -5,8 +5,8 @@ import store from '@/store'
 import {Message} from 'element-ui'
 
 const service = axios.create({
-  //我们springboot后端服务器的ip+端口号
-  baseURL: "http://localhost:6000",
+  //我们springboot后端网关服务器的ip+端口号
+  baseURL: "http://localhost:6020",
   //6s没有响应就算超时
   timeout: 6000
 })

@@ -36,7 +36,8 @@ public class IgnoreAuthenticationProperties implements InitializingBean {
 	private static final String[] DEFAULT_IGNORE_URLS = new String[] {
 			"/actuator/**",
 			"/error",
-			"/v3/api-docs"
+			"/v3/api-docs",
+			"/image/captcha"
 	};
 
 	/**

@@ -1,9 +1,8 @@
 package com.petal.common.base.vo;
 
-import com.boot.utils.Arith;
-import com.boot.utils.IpUtils;
-import com.boot.vo.server.*;
-import com.boot.vo.server.Sys;
+import com.petal.common.base.utils.Arith;
+import com.petal.common.base.utils.IpUtil;
+import com.petal.common.base.vo.server.*;
 import lombok.Data;
 import oshi.SystemInfo;
 import oshi.hardware.CentralProcessor;
@@ -139,8 +138,8 @@ public class ServerInfoVO implements Serializable {
     private void setSysInfo()
     {
         Properties props = System.getProperties();
-        sys.setComputerName(IpUtils.getHostName());
-        sys.setComputerIp(IpUtils.getHostIp());
+        sys.setComputerName(IpUtil.getHostName());
+        sys.setComputerIp(IpUtil.getHostIp());
         sys.setOsName(props.getProperty("os.name"));
         sys.setOsArch(props.getProperty("os.arch"));
         sys.setUserDir(props.getProperty("user.dir"));

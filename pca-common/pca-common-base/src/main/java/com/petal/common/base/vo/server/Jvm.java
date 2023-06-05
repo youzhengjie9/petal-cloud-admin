@@ -1,7 +1,7 @@
 package com.petal.common.base.vo.server;
 
-import com.boot.utils.Arith;
-import com.boot.utils.DateUtils;
+import com.petal.common.base.utils.Arith;
+import com.petal.common.base.utils.DateUtils;
 
 import java.lang.management.ManagementFactory;
 

@@ -1,0 +1,376 @@
+{
+	"info": {
+		"_postman_id": "b76359a2-700d-4209-9f35-2e617c45878a",
+		"name": "petal-cloud-admin接口测试",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "oauth2授权码模式登录",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic YXV0aG9yaXphdGlvbl9sb2dpbjphdXRob3JpemF0aW9uX2xvZ2luX3NlY3JldA==",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:5020/oauth2/token?grant_type=authorization_code&scope=server&code=c4WEgz_xyUwnc0fcpIIf8E6qbCd0X6ojFOUXfz4mqP2uohfTUpDimUSDMkzsZcacd_mELG7B_ZmCqvzakAmcw9FUZcI9jvKlUJG1gYHw7VZIqOuaL-98ki-wACnlsHvh&redirect_uri=https://www.baidu.com",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5020",
+					"path": [
+						"oauth2",
+						"token"
+					],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"description": "授权类型固定为: authorization_code"
+						},
+						{
+							"key": "scope",
+							"value": "server",
+							"description": "必须和数据库scope定义一致"
+						},
+						{
+							"key": "code",
+							"value": "c4WEgz_xyUwnc0fcpIIf8E6qbCd0X6ojFOUXfz4mqP2uohfTUpDimUSDMkzsZcacd_mELG7B_ZmCqvzakAmcw9FUZcI9jvKlUJG1gYHw7VZIqOuaL-98ki-wACnlsHvh"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "https://www.baidu.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "oauth2帐号密码模式登录",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic cGFzc3dvcmRfbG9naW46cGFzc3dvcmRfbG9naW5fc2VjcmV0",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "root",
+							"description": "帐号",
+							"type": "default"
+						},
+						{
+							"key": "password",
+							"value": "D8z3s1nyDtYpPg+AWX/TLA==",
+							"description": "使用com.petal.oauth2.common.base.utils.AESUtil类的encrypt方法加密过的密码（密钥在项目中有）",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:6020/petal-auth/oauth2/token?grant_type=password&scope=server",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "6020",
+					"path": [
+						"petal-auth",
+						"oauth2",
+						"token"
+					],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "password"
+						},
+						{
+							"key": "scope",
+							"value": "server"
+						},
+						{
+							"key": "image_captcha_key",
+							"value": "captcha:image:2ab2e72a2dbc4afca2df6a6921f024fb",
+							"disabled": true
+						},
+						{
+							"key": "image_captcha",
+							"value": "davtw",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "oauth2客户端凭证模式登录",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic Y2xpZW50X2xvZ2luOmNsaWVudF9sb2dpbl9zZWNyZXQ=",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://127.0.0.1:6020/petal-auth/oauth2/token?grant_type=client_credentials&scope=server",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "6020",
+					"path": [
+						"petal-auth",
+						"oauth2",
+						"token"
+					],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials"
+						},
+						{
+							"key": "scope",
+							"value": "server"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "oauth2短信模式登录",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic c21zX2xvZ2luOnNtc19sb2dpbl9zZWNyZXQ=",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://127.0.0.1:6020/petal-auth/oauth2/token?grant_type=sms_login&scope=server&phone=18420163207&sms_captcha=abc123",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "6020",
+					"path": [
+						"petal-auth",
+						"oauth2",
+						"token"
+					],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "sms_login"
+						},
+						{
+							"key": "scope",
+							"value": "server"
+						},
+						{
+							"key": "phone",
+							"value": "18420163207"
+						},
+						{
+							"key": "sms_captcha",
+							"value": "abc123"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取图片验证码",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:6020/image/captcha",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6020",
+					"path": [
+						"image",
+						"captcha"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "使用accessToken调用资源服务器接口",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 0275ae6a-db74-4c6a-aad5-2fbf2c4be32a",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:6020/petal-system/res/test4",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "6020",
+					"path": [
+						"petal-system",
+						"res",
+						"test4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "oauth2刷新token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic cGFzc3dvcmRfbG9naW46cGFzc3dvcmRfbG9naW5fc2VjcmV0",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:6020/petal-auth/oauth2/token?grant_type=refresh_token&scope=server&refresh_token=QIcgBLssfSELY_746SvwGTcXouMhXlKkoA9OoincCya8N6G_2DZ7iT0NJjusiKurnHEB4b368EmxBrrhym_rWjoW7HP5DxMFSRBDny5HFA5ARtMjZcnU1V2kKFf-3hzB",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "6020",
+					"path": [
+						"petal-auth",
+						"oauth2",
+						"token"
+					],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "refresh_token"
+						},
+						{
+							"key": "scope",
+							"value": "server"
+						},
+						{
+							"key": "refresh_token",
+							"value": "QIcgBLssfSELY_746SvwGTcXouMhXlKkoA9OoincCya8N6G_2DZ7iT0NJjusiKurnHEB4b368EmxBrrhym_rWjoW7HP5DxMFSRBDny5HFA5ARtMjZcnU1V2kKFf-3hzB"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "检查accessToken",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:6020/petal-auth/token/checkToken?accessToken=c9ba7b94-59ea-482f-a1ec-5684c9a2c593",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "6020",
+					"path": [
+						"petal-auth",
+						"token",
+						"checkToken"
+					],
+					"query": [
+						{
+							"key": "accessToken",
+							"value": "c9ba7b94-59ea-482f-a1ec-5684c9a2c593"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取当前用户信息",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 0275ae6a-db74-4c6a-aad5-2fbf2c4be32a",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:6020/petal-system/sys/user/getUserInfo",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "6020",
+					"path": [
+						"petal-system",
+						"sys",
+						"user",
+						"getUserInfo"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
