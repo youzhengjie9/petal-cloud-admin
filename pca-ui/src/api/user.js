@@ -3,14 +3,14 @@ import request from '../utils/request.js'
 export function getCurrentUserInfo(){
     return request({
         method:'get',
-        url:'/user/getCurrentUserInfo'
+        url:'/petal-system/sys/user/getCurrentUserInfo'
     })
 }
 
 export function selectAllUserByLimit(page,size){
     return request({
         method:'get',
-        url:'/user/selectAllUserByLimit',
+        url:'/petal-system/sys/user/selectAllUserByLimit',
         params:{
             page:page,
             size:size
@@ -21,7 +21,7 @@ export function selectAllUserByLimit(page,size){
 export function selectAllUserCount(){
     return request({
         method:'get',
-        url:'/user/selectAllUserCount'
+        url:'/petal-system/sys/user/selectAllUserCount'
     })
 }
 
@@ -29,7 +29,7 @@ export function selectAllUserCount(){
 export function addUser(operateForm){
     return request({
         method:'post',
-        url:'/user/addUser',
+        url:'/petal-system/sys/user/addUser',
         data:operateForm
     })
 }
@@ -37,7 +37,7 @@ export function addUser(operateForm){
 export function updateUser(operateForm){
     return request({
         method:'post',
-        url:'/user/updateUser',
+        url:'/petal-system/sys/user/updateUser',
         data:operateForm
     })
 }
@@ -45,7 +45,7 @@ export function updateUser(operateForm){
 export function deleteUser(userid){
     return request({
         method:'delete',
-        url:'/user/deleteUser',
+        url:'/petal-system/sys/user/deleteUser',
         params:{
             id:userid
         }
@@ -55,7 +55,7 @@ export function deleteUser(userid){
 export function assignRole(roles){
     return request({
         method:'post',
-        url:'/user/assignRole',
+        url:'/petal-system/sys/user/assignRole',
         data: roles
     })
 }
@@ -63,7 +63,7 @@ export function assignRole(roles){
 export function searchUserByUserNameAndLimit(userName, page, size){
     return request({
         method:'get',
-        url:'/user/searchUserByUserNameAndLimit',
+        url:'/petal-system/sys/user/searchUserByUserNameAndLimit',
         params:{
             userName:userName,
             page: page,
@@ -75,7 +75,7 @@ export function searchUserByUserNameAndLimit(userName, page, size){
 export function searchUserCountByUserName(userName){
     return request({
         method:'get',
-        url:'/user/searchUserCountByUserName',
+        url:'/petal-system/sys/user/searchUserCountByUserName',
         params:{
             userName:userName
         }

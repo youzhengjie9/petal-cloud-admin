@@ -46,27 +46,16 @@ const actions = {
 
     //用户登录成功action
     loginSuccess(context,data){
-        //将用户基本信息存储到vuex中，这部分的数据会随着刷新页面而丢失
-        context.commit('SET_USERNAME',data.data.userName)
-        context.commit('SET_NICKNAME',data.data.nickName);
-        context.commit('SET_AVATAR',data.data.avatar);
-        //用户的动态菜单
-        context.commit('SET_DYNAMIC_MENU',JSON.parse(data.data.dynamicMenu))
-        if(data.data.dynamicRouter.length!==0){
-            //用户的动态路由
-            context.commit('SET_DYNAMIC_ROUTER',JSON.parse(data.data.dynamicRouter))
-        }
-        if(data.data.perm.length!==0){
-            //用户权限perm
-            context.commit('SET_PERM',JSON.parse(data.data.perm))
-        }
         //将token到localstorage中进行持久化，因为vuex的数据是没有持久化效果的，刷新页面就会丢失，所以要放到localstorage中
-        localStorage.setItem('accessToken',data.data.accessToken)
-        localStorage.setItem('refreshToken',data.data.refreshToken)
-
+        localStorage.setItem('accessToken',data.access_token)
+        localStorage.setItem('refreshToken',data.refresh_token)
         //点击登录后还需要执行一次手动把token放到vuex中（这步操作只在login操作执行一次即可）
-        context.commit('SET_ACCESSTOKEN',data.data.accessToken);
-        context.commit('SET_REFRESHTOKEN',data.data.refreshToken);   
+        context.commit('SET_ACCESSTOKEN',data.access_token);
+        context.commit('SET_REFRESHTOKEN',data.refresh_token);
+        //因为oauth2登录只会获得accessToken和refreshToken这两个重要的内容,而少了很多重要内容（比如动态菜单、动态路由、用户权限perm）
+        //所以我们要携带accessToken去调用getCurrentUserInfo接口，获取到动态菜单、动态路由、用户权限perm
+        //然后将用户基本信息存储到vuex中，这部分的数据会随着刷新页面而丢失
+        getCurrentUserInfo(context);
     },
     getCurrentUserInfo(context){
         return new Promise((resolve,reject)=>{
@@ -149,31 +138,7 @@ const actions = {
     
     },
     //去刷新token
-    toRefreshToken(context){
-
-        refreshToken().then(res=>{
-            //将token到localstorage中进行持久化，因为vuex的数据是没有持久化效果的，刷新页面就会丢失，所以要放到localstorage中
-            localStorage.setItem('accessToken',res.data.data.accessToken)
-            localStorage.setItem('refreshToken',res.data.data.refreshToken)
-
-            //点击登录后还需要执行一次手动把token放到vuex中（这步操作只在login操作执行一次即可）
-            context.commit('SET_ACCESSTOKEN',res.data.data.accessToken);
-            context.commit('SET_REFRESHTOKEN',res.data.data.refreshToken); 
-        }).catch(err=>{ //如果刷新token失败，则清空所有数据
-                    context.commit('SET_USERNAME','')
-                    context.commit('SET_NICKNAME','');
-                    context.commit('SET_AVATAR','');
-                    context.commit('SET_DYNAMIC_MENU',[])
-                    context.commit('SET_DYNAMIC_ROUTER',[])
-                    context.commit('SET_PERM',[])
-                    context.commit('SET_ACCESSTOKEN','');
-                    context.commit('SET_REFRESHTOKEN','');
-                    //清空localstorage的accessToken和refreshToken
-                    localStorage.removeItem('accessToken')
-                    localStorage.removeItem('refreshToken')
-        })
-
-         
+    toRefreshToken(context){     
 
     }
 }

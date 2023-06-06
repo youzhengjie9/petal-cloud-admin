@@ -2,78 +2,13 @@
   <div class="main">
     <div class="backImg"></div>
     <div class="login">
-      <div class="title">
-        <span>系统登录</span>
-      </div>
-      <el-form
-        :model="form"
-        status-icon
-        :rules="rules"
-        ref="form"
-        label-width="100px"
-        class="login-container"
-      >
-        <div class="list">
-          <!-- 帐号 -->
-          <el-form-item
-            label="帐号"
-            label-width="65px"
-            prop="username"
-            class="username"
-          >
-            <el-input
-              type="input"
-              v-model="form.username"
-              autocomplete="off"
-              placeholder="请输入账号"
-            ></el-input>
-          </el-form-item>
-        </div>
-        <div class="list">
-          <!-- 密码 -->
-          <el-form-item label="密码" label-width="65px" prop="password">
-            <el-input
-              type="password"
-              v-model="form.password"
-              autocomplete="off"
-              placeholder="请输入密码"
-            ></el-input>
-          </el-form-item>
-        </div>
-        <div class="list">
-          <!-- 验证码 -->
-          <el-form-item label="验证码" label-width="65px"  prop="code">
-            <el-col :span="12">
-              <el-input
-                type="input"
-                style="width: 140px"
-                v-model="form.code"
-                autocomplete="off"
-                placeholder="请输入验证码"
-              >
-              </el-input>
-            </el-col>
+      <password-login-form ref="pwdForm"
+       :passwordLoginForm="passwordLoginForm"
+       :passwordLoginRules="passwordLoginRules"
+       :imageBase64="imageBase64"
+       @refreshCaptcha="refreshCaptcha"
+       @passwordLogin="passwordLogin"></password-login-form>
 
-            <img
-              :src="imageBase64"
-              style="width: 130px"
-              @click="refreshCaptcha"
-            />
-          </el-form-item>
-        </div>
-
-        <div class="btn">
-          <el-form-item class="login_submit">
-            <el-button
-              type="primary"
-              @click="login('form')"
-              class="login_submit"
-              style="width:330px"
-              >登录</el-button
-            >
-          </el-form-item>
-        </div>
-      </el-form>
     </div>
   </div>
 </template>
@@ -84,19 +19,23 @@ import { getImageCaptcha,passwordLogin } from "@/api/login";
 import{
   initDynamicRouter
 }from '@/utils/permission'
+import PasswordLoginForm from "@/components/login/PasswordLoginForm.vue";
 
 export default {
+  components:{
+    PasswordLoginForm
+  },
   data() {
     return {
       //form表单数据
-      form: {
+      passwordLoginForm: {
         username:'',
         password:'',
         codeKey:'', //存储在redis中的正确的验证码的key，通过这个key能找到正确的验证码
         code:'' //前端输入的验证码
       },
       //配置前端表单校验规则
-      rules: {
+      passwordLoginRules: {
         //配置username校验规则
         username: [
           {
@@ -149,57 +88,56 @@ export default {
     this.refreshCaptcha();
   },
   methods: {
-    //点击登录逻辑
-    login(form) {
-      this.$refs[form].validate((valid) => {
+    //密码登录逻辑
+    passwordLogin(passwordLoginForm) {
+      
+      this.$refs['pwdForm'].$refs[passwordLoginForm].validate((valid) => {
         //如果前端校验通过，则进入这里
         if (valid) {
           const newFormData={
-            username:this.form.username,
-            password:this.form.password,
-            image_captcha_key:this.form.codeKey, //存储在redis中的正确的验证码的key，通过这个key能找到正确的验证码
-            image_captcha:this.form.code, //前端输入的验证码
+            username:this.passwordLoginForm.username,
+            password:this.passwordLoginForm.password,
+            // image_captcha_key:this.form.codeKey, //存储在redis中的正确的验证码的key，通过这个key能找到正确的验证码
+            // image_captcha:this.form.code, //前端输入的验证码
           }
-          
+
           //调用userLogin的api方法
           passwordLogin(newFormData).then((res) => {
-            console.log(res)
+            // 拿到oauth2登录返回的数据（比如accessToken和refreshToken等等）
             let data=res.data;
-            
-            // //用户登录成功
-            // if(data.code===600)
-            // {
-            //
-            //     this.$store.dispatch('loginSuccess',data);
-            //     this.$message({
-            //         showClose: true,
-            //         message: data.msg,
-            //         type: 'success',
-            //         duration:1000
-            //     });
-            //     //登陆成功后就可以为这个用户生成动态路由（调用permission.js的初始化动态路由方法）
-            //     initDynamicRouter();
-            //
-            //
-            //     //登录成功后跳转到首页
-            //     this.$router.push({
-            //       path:'/'
-            //     })
-            // }
-            // else if(data.code===601 || data.code===602){
-            //   this.$message({
-            //         showClose: true,
-            //         message: data.msg,
-            //         type: 'error',
-            //         duration:1000
-            //     });
-            // }
+            console.log(data)
+            //用户登录成功
+            if(res.status===200)
+            {
+                this.$store.dispatch('loginSuccess',data);
+                this.$message({
+                    showClose: true,
+                    message: '登录成功',
+                    type: 'success',
+                    duration:1000
+                });
+                //登陆成功后就可以为这个用户生成动态路由（调用permission.js的初始化动态路由方法）
+                initDynamicRouter();
+
+                //登录成功后跳转到首页
+                this.$router.push({
+                  path:'/'
+                })
+            }
+            else{
+              this.$message({
+                    showClose: true,
+                    message: '登录失败,请检查系统是否出现了错误',
+                    type: 'error',
+                    duration:1000
+                });
+            }
             
         }).catch((err)=>{
           console.log(err)
             this.$message({
               showClose: true,
-              message: '登录失败,请检查是否输入正确',
+              message: '登录失败,请检查输入的帐号或密码是否正确',
               type: 'error',
               duration:1000
             });
@@ -216,7 +154,7 @@ export default {
         .then((res) => {
           console.log(res)
           //把验证码的key存储到表单对象中，请求登录接口时方便通过携带这个key从redis中找到正确的验证码
-          this.form.codeKey=res.data.data.imageCaptchaKey;
+          this.passwordLoginForm.codeKey=res.data.data.imageCaptchaKey;
           //存储验证码图片base64
           this.imageBase64 = res.data.data.imageCaptchaBase64;
         })

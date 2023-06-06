@@ -50,7 +50,7 @@ public class AuthorizationServerConfig {
     /**
      * 认证服务器的地址
      */
-    private static final String ISSUER = "http://petal.oauth2.com:5000";
+    private static final String ISSUER = "http://petal.oauth2.com:5020";
 
     @Autowired
     public void setAuthorizationService(OAuth2AuthorizationService authorizationService) {

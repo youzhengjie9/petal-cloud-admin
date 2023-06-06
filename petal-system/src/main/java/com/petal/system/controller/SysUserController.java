@@ -60,7 +60,7 @@ public class SysUserController {
      * @return {@link ResponseResult}
      */
     @OperLog("获取当前用户信息")
-    @GetMapping("/user/getCurrentUserInfo")
+    @GetMapping("/getCurrentUserInfo")
     @ApiOperation("获取当前用户信息")
     public ResponseResult<TokenVO> getCurrentUserInfo(){
 

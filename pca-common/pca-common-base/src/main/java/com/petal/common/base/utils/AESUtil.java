@@ -8,6 +8,8 @@ import org.springframework.util.Base64Utils;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 
 
 /**
@@ -127,6 +129,7 @@ public class AESUtil {
 //        String decrypt = decrypt(aesResult, aesKey);
 //        System.out.println("aes解密结果:" + decrypt);
 
+        //D8z3s1nyDtYpPg+AWX/TLA==
         String encrypt = encrypt("123456", AESConstant.LOGIN_PASSWORD_AES_KEY);
         System.out.println(encrypt);
         System.out.println(decrypt(encrypt, AESConstant.LOGIN_PASSWORD_AES_KEY));
