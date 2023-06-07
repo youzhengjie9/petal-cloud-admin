@@ -1,6 +1,7 @@
 package com.petal.gateway.config;
 
 import com.petal.gateway.handler.ImageCaptchaHandler;
+import com.petal.gateway.handler.SendSmsCaptchaHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -23,9 +24,16 @@ public class RouterFunctionConfig {
 
 	private ImageCaptchaHandler imageCaptchaHandler;
 
+	private SendSmsCaptchaHandler sendSmsCaptchaHandler;
+
 	@Autowired
 	public void setImageCaptchaHandler(ImageCaptchaHandler imageCaptchaHandler) {
 		this.imageCaptchaHandler = imageCaptchaHandler;
+	}
+
+	@Autowired
+	public void setSendSmsCaptchaHandler(SendSmsCaptchaHandler sendSmsCaptchaHandler) {
+		this.sendSmsCaptchaHandler = sendSmsCaptchaHandler;
 	}
 
 	/**
@@ -42,5 +50,12 @@ public class RouterFunctionConfig {
 				imageCaptchaHandler);
 	}
 
+	@Bean
+	public RouterFunction<ServerResponse> sendCaptchaRouterFunction(){
+		return RouterFunctions.route(
+				RequestPredicates.GET("/send/sms/captcha/{phone}"),
+				sendSmsCaptchaHandler
+		);
+	}
 
 }

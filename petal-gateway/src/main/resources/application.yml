@@ -55,7 +55,8 @@ spring:
             # swagger过滤器
             - name: Swagger
             # 校验验证码过滤器
-#            - name: CheckCaptcha
+            - name: CheckCaptcha
+            # 前端登录表单的密码解密器
             - name: PasswordDecoder
 
         # id是路由的唯一标识

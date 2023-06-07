@@ -57,9 +57,9 @@ public enum ResponseType {
      */
     REGISTER_SUCCESS(1100,"注册用户成功"),
     REGISTER_ERROR(1101,"注册用户失败"),
-    SEND_PHONE_CODE_SUCCESS(1102,"发送验证码成功,验证码将在5分钟后失效"),
-    SEND_PHONE_CODE_ERROR(1103,"发送手机验证码失败"),
-    PHONE_CODE_ERROR(1104,"手机验证码不正确"),
+    SEND_PHONE_CODE_SUCCESS(1102,"发送短信验证码成功,验证码将在5分钟后失效"),
+    SEND_PHONE_CODE_ERROR(1103,"发送短信验证码失败"),
+    PHONE_CODE_ERROR(1104,"短信验证码不正确"),
     PHONE_ERROR(1105,"手机号格式不正确"),
     CONFIRM_PASSWORD_ERROR(1106,"两次输入的密码不一致"),
     USERNAME_EXISTED(1107,"该用户名已被占用,请使用不同的用户名")
