@@ -40,16 +40,6 @@ export default {
     SmsLoginForm
   },
   data() {
-     // 手机号正则校验
-     const Mobile = (rule, value, callback) => {
-      const regMobile = /^((\(\d{2,3}\))|(\d{3}\-))?1[3|5|8]\d{9}$/;
-      if (!value) {
-        return callback(new Error("请输入手机号！"));
-      }
-      if (!regMobile.test(value)) {
-        callback(new Error("您输入的手机号格式错误！"));
-      }
-    };
     return {
       //登录类型（默认展示的是密码登录表单）
       loginType: 'password',
@@ -117,10 +107,6 @@ export default {
           {
             required: true, 
             message: "请填写手机号码"
-          },
-          { 
-            validator: Mobile,
-            trigger: "blur"
           },
           {
             min: 11,
@@ -227,17 +213,14 @@ export default {
 
     //短信登录逻辑
     smsLogin(smsLoginForm) {
-      console.log(1)
+
       this.$refs['smsForm'].$refs[smsLoginForm].validate((valid) => {
-        console.log(2)
-        console.log(valid)
         //如果前端校验通过，则进入这里
         if (valid) {
           //调用userLogin的api方法
           smsLogin(this.smsLoginForm.phone,this.smsLoginForm.smsCaptcha).then((res) => {
             // 拿到oauth2登录返回的数据（比如accessToken和refreshToken等等）
             let data=res.data;
-            console.log(data)
             //用户登录成功
             if(res.status===200)
             {
@@ -266,7 +249,6 @@ export default {
             }
             
         }).catch((err)=>{
-          console.log(3)
           this.$message({
                   showClose: true,
                   message: '登录失败,请检查输入的短信验证码是否正确',
@@ -276,9 +258,9 @@ export default {
         })
      
         } else {
-          console.log(4)
           return false;
         }
+
       });
       
     },

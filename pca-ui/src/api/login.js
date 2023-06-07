@@ -47,6 +47,6 @@ export function smsLogin(phone,smsCaptcha){
         headers: {
             "Authorization": basicAuth
         },
-        url:'/petal-auth/oauth2/token?grant_type=password&scope=server&phone='+phone+'&sms_captcha='+smsCaptcha,
+        url:'/petal-auth/oauth2/token?grant_type=sms_login&scope=server&phone='+phone+'&sms_captcha='+smsCaptcha,
     })
 }
