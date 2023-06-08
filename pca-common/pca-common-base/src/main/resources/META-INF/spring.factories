@@ -1,4 +1,5 @@
 
 
 org.springframework.boot.autoconfigure.EnableAutoConfiguration = \
-  com.petal.common.base.utils.SpringContextHolder
+  com.petal.common.base.utils.SpringContextHolder,\
+  com.petal.common.base.utils.EasyExcelUtil

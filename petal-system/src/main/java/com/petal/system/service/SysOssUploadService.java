@@ -18,7 +18,7 @@ public interface SysOssUploadService {
      * @param imageFile
      * @return 上传结果
      */
-    ResponseResult imageUpload(MultipartFile imageFile);
+    ResponseResult<Object> imageUpload(MultipartFile imageFile);
 
     /**
      * oss文件删除
@@ -26,7 +26,7 @@ public interface SysOssUploadService {
      *
      * @return 删除结果
      */
-    ResponseResult fileDelete(String fileFullName);
+    ResponseResult<Object> fileDelete(String fileFullName);
 
     /**
      * 文件下载

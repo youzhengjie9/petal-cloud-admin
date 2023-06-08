@@ -49,6 +49,11 @@
             <artifactId>pca-common-swagger</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.petal.common.oss</groupId>
+            <artifactId>pca-common-oss</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 </project>
