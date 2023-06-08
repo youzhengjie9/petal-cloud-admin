@@ -2,7 +2,9 @@
 import axios from 'axios'
 import store from '@/store'
 //引入element-ui的消息弹出
-import {Message} from 'element-ui'
+import {Message,Toast} from 'element-ui'
+import router from '@/router'
+
 
 const service = axios.create({
   //我们springboot后端网关服务器的ip+端口号
@@ -59,14 +61,32 @@ service.interceptors.request.use(function (config) {
 //添加axios响应拦截器（axios请求发送后，后台返回数据给前端，当接收响应数据后自动执行）
 service.interceptors.response.use(function (response) {
      // 响应数据
-     const res = response.data;
-
+     const data = response.data;
      
      return response; //记得要返回response。
      
   }, function (error) {
+    //响应错误回调（比如 接口的403无权限异常将会在这里进行处理 ） 
+    console.log(error)
+    // 403无权限异常处理
+    if(error.response.status === 403){
+
+      Message({
+        message: '您没有该操作的权限!',
+        type: 'error',
+        duration: 1000
+      })
+
+      setTimeout(() => {
+          router.push({
+            path:'/403'
+          })
+      },1000)
+    }
     // 对响应错误做点什么
     return Promise.reject(error);
+
+    
   });
 
 

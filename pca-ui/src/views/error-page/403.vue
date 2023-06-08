@@ -1,7 +1,7 @@
 <template>
     <div class="errPage-container">
       <el-button icon="el-icon-arrow-left" class="pan-back-btn" @click="back">
-        返回上一个页面
+        返回仪表盘
       </el-button>
       <el-row>
         <el-col :span="12">
@@ -32,7 +32,7 @@
   import errGif from '@/assets/403_images/403.gif'
   
   export default {
-    name: 'Page401',
+    name: 'Page403',
     data() {
       return {
         errGif: errGif + '?' + +new Date(),
@@ -42,11 +42,12 @@
     },
     methods: {
       back() {
-        if (this.$route.query.noGoBack) {
-          this.$router.push({ path: '/dashboard' })
-        } else {
-          this.$router.go(-1)
-        }
+        // if (this.$route.query.noGoBack) {
+        //   this.$router.push({ path: '/dashboard' })
+        // } else {
+        //   this.$router.go(-1)
+        // }
+        this.$router.push({ path: '/dashboard' })
       }
     }
   }
