@@ -52,10 +52,10 @@ public class SysExportExcelServiceImpl implements SysExportExcelService {
         this.sysLoginLogService = sysLoginLogService;
     }
 
-    @Autowired
-    public void setSysOperationLogService(SysOperationLogService sysOperationLogService) {
-        this.sysOperationLogService = sysOperationLogService;
-    }
+//    @Autowired
+//    public void setSysOperationLogService(SysOperationLogService sysOperationLogService) {
+//        this.sysOperationLogService = sysOperationLogService;
+//    }
 
     @Autowired
     public void setEasyExcelUtil(EasyExcelUtil easyExcelUtil) {

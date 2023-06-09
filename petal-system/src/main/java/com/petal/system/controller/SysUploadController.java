@@ -26,9 +26,8 @@ import javax.servlet.http.HttpServletResponse;
 public class SysUploadController {
 
     @Autowired
-    @Qualifier("minioUploadServiceImpl") //指定spring注入的实现类
+    @Qualifier("sysQiniuOssUploadServiceImpl") //指定spring注入的实现类
     private SysOssUploadService ossUploadService;
-
 
     /**
      * 上传头像

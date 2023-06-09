@@ -5,6 +5,7 @@ import com.petal.common.base.dto.SysMenuDTO;
 import com.petal.common.base.entity.SysMenu;
 import com.petal.common.base.enums.ResponseType;
 import com.petal.common.base.utils.ResponseResult;
+import com.petal.common.security.annotation.PermitAll;
 import com.petal.system.service.SysMenuService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -142,6 +143,25 @@ public class SysMenuController {
                     ResponseType.ERROR.getMessage(),null);
         }
     }
+
+    /**
+     * 根据userid获取用户权限。（说白了就是获取sys_menu表中type=1和type=2的perms），这就是我们访问任何接口和菜单的权限
+     */
+    @PermitAll
+    @GetMapping(path = "/getUserPermissionByUserId")
+    public ResponseResult<List<String>> getUserPermissionByUserId(@RequestParam("userid") long userid){
+
+        try {
+            List<String> permission = sysMenuService.getUserPermissionByUserId(userid);
+            return ResponseResult.build(ResponseType.SUCCESS.getCode(),
+                    ResponseType.SUCCESS.getMessage(),permission);
+        }catch (Exception e){
+            return ResponseResult.build(ResponseType.ERROR.getCode(),
+                    ResponseType.ERROR.getMessage(),null);
+        }
+
+    }
+
 
 
 }

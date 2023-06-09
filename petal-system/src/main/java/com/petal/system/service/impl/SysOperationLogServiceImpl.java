@@ -5,6 +5,7 @@
 //import com.petal.common.base.entity.SysOperationLog;
 //import com.petal.system.mapper.SysOperationLogMapper;
 //import com.petal.system.service.SysOperationLogService;
+//import io.minio.messages.DeleteRequest;
 //import lombok.extern.slf4j.Slf4j;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.stereotype.Service;
@@ -38,7 +39,7 @@
 //
 //
 //    @Override
-//    public List<OperationLog> selectAllOperationLogByLimit(int page, int size) {
+//    public List<SysOperationLog> selectAllOperationLogByLimit(int page, int size) {
 //
 //        try {
 //

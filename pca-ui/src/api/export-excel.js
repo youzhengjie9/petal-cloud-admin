@@ -3,7 +3,7 @@ import request from '../utils/request'
 export function exportAllUser(){
     return request({
         method:'get',
-        url:'/export/excel/exportAllUser',
+        url:'/petal-system/sys/export/excel/exportAllUser',
         responseType: 'blob' //响应类型要设置为blob
     })
 }
@@ -11,7 +11,7 @@ export function exportAllUser(){
 export function exportAllRole(){
     return request({
         method:'get',
-        url:'/export/excel/exportAllRole',
+        url:'/petal-system/sys/export/excel/exportAllRole',
         responseType: 'blob' //响应类型要设置为blob
     })
 }
@@ -20,7 +20,7 @@ export function exportAllRole(){
 export function exportAllMenu(){
     return request({
         method:'get',
-        url:'/export/excel/exportAllMenu',
+        url:'/petal-system/sys/export/excel/exportAllMenu',
         responseType: 'blob' //响应类型要设置为blob
     })
 }
@@ -29,7 +29,7 @@ export function exportAllMenu(){
 export function exportAllLoginLog(){
     return request({
         method:'get',
-        url:'/export/excel/exportAllLoginLog',
+        url:'/petal-system/sys/export/excel/exportAllLoginLog',
         responseType: 'blob' //响应类型要设置为blob
     })
 }
@@ -38,7 +38,7 @@ export function exportAllLoginLog(){
 export function exportAllOperationLog(){
     return request({
         method:'get',
-        url:'/export/excel/exportAllOperationLog',
+        url:'/petal-system/sys/export/excel/exportAllOperationLog',
         responseType: 'blob' //响应类型要设置为blob
     })
 }

@@ -52,8 +52,6 @@ public abstract class OAuth2AuthenticationProvider<T extends OAuth2Authenticatio
 
 	private final AuthenticationManager authenticationManager;
 
-//	private final MessageSourceAccessor messages;
-
 	@Deprecated
 	private Supplier<String> refreshTokenGenerator;
 
@@ -72,9 +70,6 @@ public abstract class OAuth2AuthenticationProvider<T extends OAuth2Authenticatio
 		this.authenticationManager = authenticationManager;
 		this.authorizationService = authorizationService;
 		this.tokenGenerator = tokenGenerator;
-
-		// 国际化配置
-//		this.messages = new MessageSourceAccessor(SpringUtil.getBean("securityMessageSource"), Locale.CHINA);
 	}
 
 	@Deprecated
@@ -113,7 +108,6 @@ public abstract class OAuth2AuthenticationProvider<T extends OAuth2Authenticatio
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 
-		System.out.println("authenticate");
 		T resourceOwnerBaseAuthentication = (T) authentication;
 
 		OAuth2ClientAuthenticationToken clientPrincipal = getAuthenticatedClientElseThrowInvalidClient(

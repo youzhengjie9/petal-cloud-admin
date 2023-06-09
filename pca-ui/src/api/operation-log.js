@@ -4,7 +4,7 @@ import request from '../utils/request'
 export function selectAllOperationLogByLimit(page,size){
     return request({
         method:'get',
-        url:'/operation/log/selectAllOperationLogByLimit',
+        url:'/petal-system/sys/operation/log/selectAllOperationLogByLimit',
         params:{
             page:page,
             size:size
@@ -15,7 +15,7 @@ export function selectAllOperationLogByLimit(page,size){
 export function selectAllOperationLogCount(){
     return request({
         method:'get',
-        url:'/operation/log/selectAllOperationLogCount'
+        url:'/petal-system/sys/operation/log/selectAllOperationLogCount'
     })
 }
 
@@ -23,7 +23,7 @@ export function selectAllOperationLogCount(){
 export function deleteOperationLog(id){
     return request({
         method:'delete',
-        url:'/operation/log/deleteOperationLog',
+        url:'/petal-system/sys/operation/log/deleteOperationLog',
         params:{
             id:id
         }
@@ -34,7 +34,7 @@ export function deleteOperationLog(id){
 export function searchOperationLogByUserNameAndLimit(username,page,size){
     return request({
         method:'get',
-        url:'/operation/log/searchOperationLogByUserNameAndLimit',
+        url:'/petal-system/sys/operation/log/searchOperationLogByUserNameAndLimit',
         params:{
             username:username,
             page:page,
@@ -46,7 +46,7 @@ export function searchOperationLogByUserNameAndLimit(username,page,size){
 export function searchOperationLogCountByUserName(username){
     return request({
         method:'get',
-        url:'/operation/log/searchOperationLogCountByUserName',
+        url:'/petal-system/sys/operation/log/searchOperationLogCountByUserName',
         params:{
             username:username
         }

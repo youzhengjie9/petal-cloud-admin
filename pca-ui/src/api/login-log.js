@@ -3,7 +3,7 @@ import request from '../utils/request'
 export function selectAllLoginLogByLimit(page,size){
     return request({
         method:'get',
-        url:'/login/log/selectAllLoginLogByLimit',
+        url:'/petal-system/sys/login/log/selectAllLoginLogByLimit',
         params:{
             page:page,
             size:size
@@ -14,14 +14,14 @@ export function selectAllLoginLogByLimit(page,size){
 export function selectAllLoginLogCount(){
     return request({
         method:'get',
-        url:'/login/log/selectAllLoginLogCount'
+        url:'/petal-system/sys/login/log/selectAllLoginLogCount'
     })
 }
 
 export function deleteLoginLog(id){
     return request({
         method:'delete',
-        url:'/login/log/deleteLoginLog',
+        url:'/petal-system/sys/login/log/deleteLoginLog',
         params:{
             id:id
         }
@@ -32,7 +32,7 @@ export function deleteLoginLog(id){
 export function searchLoginLogByUserNameAndLimit(username,page,size){
     return request({
         method:'get',
-        url:'/login/log/searchLoginLogByUserNameAndLimit',
+        url:'/petal-system/sys/login/log/searchLoginLogByUserNameAndLimit',
         params:{
             username:username,
             page:page,
@@ -44,7 +44,7 @@ export function searchLoginLogByUserNameAndLimit(username,page,size){
 export function searchLoginLogCountByUserName(username){
     return request({
         method:'get',
-        url:'/login/log/searchLoginLogCountByUserName',
+        url:'/petal-system/sys/login/log/searchLoginLogCountByUserName',
         params:{
             username:username
         }
