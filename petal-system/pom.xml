@@ -54,6 +54,11 @@
             <artifactId>pca-common-oss</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.petal.common.elasticsearch</groupId>
+            <artifactId>pca-common-elasticsearch</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 </project>

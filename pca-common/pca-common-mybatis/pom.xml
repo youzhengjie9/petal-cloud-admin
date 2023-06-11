@@ -20,6 +20,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.petal.common.base</groupId>
+            <artifactId>pca-common-base</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>

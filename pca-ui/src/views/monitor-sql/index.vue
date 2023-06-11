@@ -1,6 +1,6 @@
 <template>
         <iframe
-        src="http://localhost:8188/druid/index.html"
+        src="http://localhost:6020/petal-system/druid/login.html"
         scrolling="yes"
         width="100%"
 	    height="100%"

@@ -21,13 +21,17 @@ import javax.servlet.http.HttpServletResponse;
  */
 @RestController
 @Api("上传接口")
-@RequestMapping(path = "/upload")
+@RequestMapping(path = "/sys/upload")
 @Slf4j
 public class SysUploadController {
 
+    private SysOssUploadService ossUploadService;
+
     @Autowired
     @Qualifier("sysQiniuOssUploadServiceImpl") //指定spring注入的实现类
-    private SysOssUploadService ossUploadService;
+    public void setOssUploadService(SysOssUploadService ossUploadService) {
+        this.ossUploadService = ossUploadService;
+    }
 
     /**
      * 上传头像

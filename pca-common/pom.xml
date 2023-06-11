@@ -20,6 +20,7 @@
         <module>pca-common-openfeign</module>
         <module>pca-common-swagger</module>
         <module>pca-common-oss</module>
+        <module>pca-common-elasticsearch</module>
     </modules>
 
     <properties>

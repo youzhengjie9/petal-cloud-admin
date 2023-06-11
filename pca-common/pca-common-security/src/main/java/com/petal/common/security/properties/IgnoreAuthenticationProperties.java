@@ -37,7 +37,8 @@ public class IgnoreAuthenticationProperties implements InitializingBean {
 			"/actuator/**",
 			"/error",
 			"/v3/api-docs",
-			"/image/captcha"
+			"/image/captcha",
+			"/druid/**"
 	};
 
 	/**

@@ -131,6 +131,11 @@ swagger:
   # 联系人的电子邮件
   contactEmail: 1550324080@qq.com
 
+# elasticsearch配置
+elasticsearch:
+  hostname: 192.168.184.100
+  port: 9200
+  scheme: http
 
 # 开启端点
 management:

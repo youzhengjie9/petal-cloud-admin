@@ -24,8 +24,12 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @RequestMapping(path = "/sys/role")
 public class SysRoleController {
 
-    @Autowired
     private SysRoleService sysRoleService;
+
+    @Autowired
+    public void setSysRoleService(SysRoleService sysRoleService) {
+        this.sysRoleService = sysRoleService;
+    }
 
     /**
      *
