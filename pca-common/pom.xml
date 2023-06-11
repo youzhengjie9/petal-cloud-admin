@@ -21,6 +21,7 @@
         <module>pca-common-swagger</module>
         <module>pca-common-oss</module>
         <module>pca-common-elasticsearch</module>
+        <module>pca-common-log</module>
     </modules>
 
     <properties>

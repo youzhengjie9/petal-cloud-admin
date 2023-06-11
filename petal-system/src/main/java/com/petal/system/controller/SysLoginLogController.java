@@ -4,7 +4,8 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.petal.common.base.annotation.OperLog;
 import com.petal.common.base.entity.SysLoginLog;
 import com.petal.common.base.enums.ResponseType;
-import com.petal.common.base.utils.ResponseResult;
+import com.petal.common.base.utils.*;
+import com.petal.common.security.annotation.PermitAll;
 import com.petal.system.service.SysLoginLogService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -12,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -123,6 +126,38 @@ public class SysLoginLogController {
             int count = sysLoginLogService.searchLoginLogCountByUserName(username);
             return ResponseResult.build(ResponseType.SUCCESS.getCode(),
                     ResponseType.SUCCESS.getMessage(),count);
+        }catch (Exception e){
+            return ResponseResult.build(ResponseType.ERROR.getCode(),
+                    ResponseType.ERROR.getMessage(),null);
+        }
+    }
+
+    @PermitAll
+    @PostMapping(path = "/addLoginLog")
+    @ApiOperation("添加登录日志")
+    public ResponseResult<Boolean> addLoginLog(@RequestParam("username") String username,
+                                               HttpServletRequest request){
+        try {
+            //获取ip
+            String ipAddr = IpUtil.getIpAddrByHttpServletRequest(request);
+            //获取ip所在的地址
+            String address = IpToAddressUtil.getCityInfo(ipAddr);
+            //获取用户使用的浏览器
+            String browserName = BrowserUtil.getBrowserName(request);
+            //获取用户使用的操作系统
+            String osName = BrowserUtil.getOsName(request);
+            SysLoginLog sysLoginLog = SysLoginLog.builder()
+                    .id(SnowId.nextId())
+                    .username(username)
+                    .ip(ipAddr)
+                    .address(address)
+                    .browser(browserName)
+                    .os(osName)
+                    .loginTime(LocalDateTime.now())
+                    .build();
+            boolean saveSuccess = sysLoginLogService.save(sysLoginLog);
+            return ResponseResult.build(ResponseType.SUCCESS.getCode(),
+                    ResponseType.SUCCESS.getMessage(),saveSuccess);
         }catch (Exception e){
             return ResponseResult.build(ResponseType.ERROR.getCode(),
                     ResponseType.ERROR.getMessage(),null);

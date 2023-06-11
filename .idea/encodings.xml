@@ -7,6 +7,8 @@
     <file url="file://$PROJECT_DIR$/pca-common/pca-common-base/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pca-common/pca-common-elasticsearch/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pca-common/pca-common-elasticsearch/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pca-common/pca-common-log/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pca-common/pca-common-log/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pca-common/pca-common-mybatis/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pca-common/pca-common-mybatis/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pca-common/pca-common-openfeign/src/main/java" charset="UTF-8" />

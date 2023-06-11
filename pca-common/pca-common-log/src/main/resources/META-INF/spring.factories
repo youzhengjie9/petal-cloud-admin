@@ -1,0 +1,5 @@
+
+
+org.springframework.boot.autoconfigure.EnableAutoConfiguration = \
+  com.petal.common.log.autoconfigure.PetalCommonLogAutoConfiguration
+

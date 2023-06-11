@@ -2,6 +2,8 @@ package com.petal.auth.support.handler;
 
 import cn.hutool.core.map.MapUtil;
 import com.petal.common.base.constant.Oauth2Constant;
+import com.petal.common.base.utils.SpringContextHolder;
+import com.petal.common.log.event.SysLoginLogEvent;
 import com.petal.common.security.service.SecurityOauth2User;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -57,7 +59,8 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 			SecurityContext context = SecurityContextHolder.createEmptyContext();
 			context.setAuthentication(accessTokenAuthentication);
 			SecurityContextHolder.setContext(context);
-			// TODO: 2023/5/7 登录日志
+			// 发布登录成功日志，由监听器异步处理任务，将数据添加到数据库中
+			SpringContextHolder.publishEvent(new SysLoginLogEvent(userInfo.getName()));
 		}
 
 		// 输出token
