@@ -167,7 +167,8 @@ public class TokenEndPointController {
 
     /**
      * 退出登录
-     *
+     * <p>
+     * 只要携带了token调用了这个退出登录接口，那么该token将会过期，无法在通过这个token去访问其他接口，必须重新登录
      * @param authHeader Authorization
      */
     @DeleteMapping("/logout")

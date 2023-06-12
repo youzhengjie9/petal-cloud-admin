@@ -23,8 +23,6 @@ public class SysLoginLogListener {
 
 	private SysLoginLogFeign sysLoginLogFeign;
 
-	private HttpServletRequest request;
-
 	private static final ThreadPoolExecutor threadPoolExecutor =
 			new ThreadPoolExecutor(10,15,
 					2L, TimeUnit.SECONDS,
@@ -36,17 +34,13 @@ public class SysLoginLogListener {
 		this.sysLoginLogFeign = sysLoginLogFeign;
 	}
 
-	@Autowired
-	public void setRequest(HttpServletRequest request) {
-		this.request = request;
-	}
-
+	// 监听器事件的处理逻辑（监听SysLoginLogEvent事件）
 	@EventListener(SysLoginLogEvent.class)
-	public void saveSysLog(SysLoginLogEvent sysLoginLogEvent) {
+	public void saveSysLoginLog(SysLoginLogEvent sysLoginLogEvent) {
 		//线程池异步调用
 		threadPoolExecutor.execute(() ->{
-			String username = (String) sysLoginLogEvent.getSource();
-			sysLoginLogFeign.addLoginLog(username,request,"12345");
+			SysLoginLog username = (SysLoginLog) sysLoginLogEvent.getSource();
+			sysLoginLogFeign.addLoginLog(username,"12345");
 		});
 	}
 

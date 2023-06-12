@@ -2,7 +2,8 @@ package com.petal.auth.support.handler;
 
 import cn.hutool.core.map.MapUtil;
 import com.petal.common.base.constant.Oauth2Constant;
-import com.petal.common.base.utils.SpringContextHolder;
+import com.petal.common.base.entity.SysLoginLog;
+import com.petal.common.base.utils.*;
 import com.petal.common.log.event.SysLoginLogEvent;
 import com.petal.common.security.service.SecurityOauth2User;
 import lombok.SneakyThrows;
@@ -23,6 +24,7 @@ import org.springframework.util.CollectionUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Map;
 
@@ -59,8 +61,25 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 			SecurityContext context = SecurityContextHolder.createEmptyContext();
 			context.setAuthentication(accessTokenAuthentication);
 			SecurityContextHolder.setContext(context);
+			//获取ip
+			String ipAddr = IpUtil.getIpAddrByHttpServletRequest(request);
+			//获取ip所在的地址
+			String address = IpToAddressUtil.getCityInfo(ipAddr);
+			//获取用户使用的浏览器
+			String browserName = BrowserUtil.getBrowserName(request);
+			//获取用户使用的操作系统
+			String osName = BrowserUtil.getOsName(request);
+			SysLoginLog sysLoginLog = SysLoginLog.builder()
+					.id(SnowId.nextId())
+					.username(userInfo.getName())
+					.ip(ipAddr)
+					.address(address)
+					.browser(browserName)
+					.os(osName)
+					.loginTime(LocalDateTime.now())
+					.build();
 			// 发布登录成功日志，由监听器异步处理任务，将数据添加到数据库中
-			SpringContextHolder.publishEvent(new SysLoginLogEvent(userInfo.getName()));
+			SpringContextHolder.publishEvent(new SysLoginLogEvent(sysLoginLog));
 		}
 
 		// 输出token

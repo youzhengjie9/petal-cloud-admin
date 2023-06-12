@@ -135,7 +135,7 @@ public class SysOperationLogServiceImpl extends ServiceImpl<SysOperationLogMappe
             sources.put("browser", sysOperationLog.getBrowser());
             sources.put("os", sysOperationLog.getOs());
             sources.put("operTime", sysOperationLog.getOperTime());
-            sources.put("delFlag", sysOperationLog.getDelFlag());
+            sources.put("delFlag", 0);
             indexRequest.source(sources);
             restHighLevelClient.index(indexRequest,RequestOptions.DEFAULT);
             return true;

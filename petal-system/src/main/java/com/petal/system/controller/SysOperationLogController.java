@@ -73,7 +73,10 @@ public class SysOperationLogController {
         try {
             LambdaQueryWrapper<SysOperationLog> sysOperationLogLambdaQueryWrapper = new LambdaQueryWrapper<>();
             sysOperationLogLambdaQueryWrapper.eq(SysOperationLog::getId,id);
+            // 删除数据库的记录
             boolean removeResult = sysOperationLogService.remove(sysOperationLogLambdaQueryWrapper);
+            // 删除ElasticSearch记录
+            sysOperationLogService.deleteOperationLogToEs(id);
             return ResponseResult.build(ResponseType.SUCCESS.getCode(), ResponseType.SUCCESS.getMessage(),removeResult);
         }catch (Exception e){
             return ResponseResult.build(ResponseType.ERROR.getCode(), ResponseType.ERROR.getMessage(),null);

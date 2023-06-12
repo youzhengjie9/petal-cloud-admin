@@ -77,11 +77,7 @@ export default {
     //退出登录
     logout() {
 
-      //拿到token
-      let accessToken=localStorage.getItem('accessToken');
-      let refreshToken=localStorage.getItem('refreshToken');
-
-      logout(accessToken,refreshToken).then(res=>{
+      logout().then(res=>{
         
         //调用vuex的方法，进行退出成功后的处理（比如清空localstorage和vuex数据）
         this.$store.dispatch('logoutSuccess');

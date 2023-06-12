@@ -109,6 +109,10 @@ public class OperLogAspect {
                         .operTime(LocalDateTime.now())
                         .build();
             sysOperationLogService.save(sysOperationLog);
+
+            // 插入OperationLog数据到ElasticSearch
+            sysOperationLogService.addOperationLogToEs(sysOperationLog);
+
             return proceed;
         } catch (Throwable e) {
             e.printStackTrace();

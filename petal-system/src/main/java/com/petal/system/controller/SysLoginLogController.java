@@ -135,26 +135,8 @@ public class SysLoginLogController {
     @PermitAll
     @PostMapping(path = "/addLoginLog")
     @ApiOperation("添加登录日志")
-    public ResponseResult<Boolean> addLoginLog(@RequestParam("username") String username,
-                                               HttpServletRequest request){
+    public ResponseResult<Boolean> addLoginLog(@RequestBody SysLoginLog sysLoginLog){
         try {
-            //获取ip
-            String ipAddr = IpUtil.getIpAddrByHttpServletRequest(request);
-            //获取ip所在的地址
-            String address = IpToAddressUtil.getCityInfo(ipAddr);
-            //获取用户使用的浏览器
-            String browserName = BrowserUtil.getBrowserName(request);
-            //获取用户使用的操作系统
-            String osName = BrowserUtil.getOsName(request);
-            SysLoginLog sysLoginLog = SysLoginLog.builder()
-                    .id(SnowId.nextId())
-                    .username(username)
-                    .ip(ipAddr)
-                    .address(address)
-                    .browser(browserName)
-                    .os(osName)
-                    .loginTime(LocalDateTime.now())
-                    .build();
             boolean saveSuccess = sysLoginLogService.save(sysLoginLog);
             return ResponseResult.build(ResponseType.SUCCESS.getCode(),
                     ResponseType.SUCCESS.getMessage(),saveSuccess);

@@ -1,12 +1,10 @@
 import request from '../utils/request'
 
-export function logout(accessToken,refreshToken){
+//密码登录
+export function logout(){
+ 
     return request({
-        method:'post',
-        url:'/user/logout',
-        headers:{
-            accessToken:accessToken,
-            refreshToken:refreshToken
-        }
+        method:'delete',
+        url:'/petal-auth/token/logout'
     })
 }

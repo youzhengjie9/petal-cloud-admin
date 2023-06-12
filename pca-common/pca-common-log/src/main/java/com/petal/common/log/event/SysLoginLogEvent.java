@@ -11,8 +11,8 @@ import org.springframework.context.ApplicationEvent;
  */
 public class SysLoginLogEvent extends ApplicationEvent {
 
-	public SysLoginLogEvent(String username) {
-		super(username);
+	public SysLoginLogEvent(SysLoginLog sysLoginLog) {
+		super(sysLoginLog);
 	}
 
 }
